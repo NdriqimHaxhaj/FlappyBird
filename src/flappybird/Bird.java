@@ -38,8 +38,8 @@ public class Bird implements Updatable,Renderable{
         this.pipes=pipes;
         
         try {
-            flapUp=Sprite.getSprite("bird_up.png");
-            flapDown=Sprite.getSprite("bird_down.png");
+            flapUp=Sprite.getSprite("../images/bird_up.png");
+            flapDown=Sprite.getSprite("../images/bird_down.png");
         } catch (IOException e) {
             System.err.println(e.getMessage());
             System.exit(1);

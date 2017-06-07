@@ -84,12 +84,12 @@ public class World {
            
            
            //FPS Check
-           if (System.currentTimeMillis() - timeAtLastFPSCheck >= 1000){
-               System.out.println("FPS: "+frames);
-               gameWindow.setTitle(gameTitle + " - FPS: "+frames);
-               frames=0;
-               timeAtLastFPSCheck=System.currentTimeMillis();
-           }
+//           if (System.currentTimeMillis() - timeAtLastFPSCheck >= 1000){
+//               System.out.println("FPS: "+frames);
+//               gameWindow.setTitle(gameTitle + " - FPS: "+frames);
+//               frames=0;
+//               timeAtLastFPSCheck=System.currentTimeMillis();
+//           }
            
         }
     } // end of start() method

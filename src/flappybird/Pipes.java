@@ -7,7 +7,11 @@ package flappybird;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,7 +21,8 @@ public class Pipes implements Updatable, Renderable {
 
     private int pipeWidth = 100;
     private int spaceBetween = 210;
-    private int spaceVertical = 180;
+    private int spaceVertical = 140;
+    private BufferedImage pipeDown,pipeUp;
 
     private float velX = -5.0f;
     private float x1, x2, x3;
@@ -31,6 +36,13 @@ public class Pipes implements Updatable, Renderable {
     private Random rand;
 
     public Pipes() {
+        try { 
+            this.pipeDown = Sprite.getSprite("../images/pinkDownPipe.png");
+            this.pipeUp = Sprite.getSprite("../images/pinkUpPipe.png");
+        } catch (IOException ex) {
+           System.err.println(ex.getMessage());
+           System.exit(1);
+        }
         rand = new Random();
         resetPipes();
     }
@@ -92,23 +104,30 @@ public class Pipes implements Updatable, Renderable {
                 pipeCoordinates[2][1] = y3;
                 break;
         }
-    }
+    } // end of the update methode
 
     @Override
     public void render(Graphics2D g, float interpolation) {
-        g.setColor(Color.red);
+//        g.setColor(Color.red);
         
         //Pipe 1
-        g.fillRect((int)(x1+(velX*interpolation)), 0, pipeWidth, (int)y1);
-        g.fillRect((int)(x1+(velX*interpolation)),(int) (y1+spaceVertical), pipeWidth, World.HEIGHT);
+//     g.fillRect((int)(x1+(velX*interpolation)), 0, pipeWidth, (int)y1);
+//      g.fillRect((int)(x1+(velX*interpolation)),(int) (y1+spaceVertical), pipeWidth, World.HEIGHT);
+        g.drawImage(pipeUp, (int)(x1+(velX*interpolation)), 0, pipeWidth, (int)y1, null);
+        g.drawImage(pipeDown, (int)(x1+(velX*interpolation)), (int) (y1+spaceVertical),pipeWidth,pipeDown.getHeight(),null);
+
         // Pipe 2
-        g.fillRect((int)(x2+(velX*interpolation)), 0, pipeWidth, (int)y2);
-        g.fillRect((int)(x2+(velX*interpolation)),(int) (y2+spaceVertical), pipeWidth, World.HEIGHT);
+        g.drawImage(pipeUp, (int)(x2+(velX*interpolation)), 0, pipeWidth, (int)y2, null);
+        g.drawImage(pipeDown, (int)(x2+(velX*interpolation)), (int) (y2+spaceVertical),pipeWidth,pipeDown.getHeight(),null);
+//      g.fillRect((int)(x2+(velX*interpolation)), 0, pipeWidth, (int)y2);
+//      g.fillRect((int)(x2+(velX*interpolation)),(int) (y2+spaceVertical), pipeWidth, World.HEIGHT);
         
         //Pipe 3
-        g.fillRect((int)(x3+(velX*interpolation)), 0, pipeWidth, (int)y3);
-        g.fillRect((int)(x3+(velX*interpolation)),(int) (y3+spaceVertical), pipeWidth, World.HEIGHT);
-    }   
+        g.drawImage(pipeUp, (int)(x3+(velX*interpolation)), 0, pipeWidth, (int)y3, null);
+        g.drawImage(pipeDown, (int)(x3+(velX*interpolation)), (int) (y3+spaceVertical),pipeWidth,pipeDown.getHeight(),null);
+//      g.fillRect((int)(x3+(velX*interpolation)), 0, pipeWidth, (int)y3);
+//      g.fillRect((int)(x3+(velX*interpolation)),(int) (y3+spaceVertical), pipeWidth, World.HEIGHT);
+    } // end of render methode   
 
     public float[] getNearestPipe() {
         return pipeCoordinates[nearestPipe];

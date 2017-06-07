@@ -15,7 +15,10 @@ public class Main {
         //initialise game objects
         Pipes p = new Pipes();
         Bird b = new Bird(p);
+        Background bg = new Background();
         // add updatables and renderables
+        w.addUpdatable(bg);
+        w.addRenderable(bg);
         w.addRenderable(p);
         w.addUpdatable(p);
         w.addUpdatable(b);
