@@ -5,6 +5,7 @@
  */
 package flappybird;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -28,12 +29,15 @@ public class Bird implements Updatable,Renderable{
     
     private Integer score=0;
     
-    private Font gameFont = new Font("Minecrafter", Font.TRUETYPE_FONT, 50);
+    private Font scoreFont = new Font("Minecrafter", Font.TRUETYPE_FONT, 50);
+    private Font highScoreFont = new Font("Minecrafter", Font.TRUETYPE_FONT, 30);
     
     private BufferedImage flapUp;
     private BufferedImage flapDown;
     
     Score sc = new Score();
+    private int highScore=sc.score;
+            
     
     
     public Bird(Pipes pipes){
@@ -85,6 +89,7 @@ public class Bird implements Updatable,Renderable{
             System.out.println(score);
             if(sc.score<score){
                 sc.writeScore(score);
+                highScore=sc.score;
             }
             System.out.println(sc.score);
             pipes.resetPipes();
@@ -105,8 +110,11 @@ public class Bird implements Updatable,Renderable{
             RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         g.drawImage(velY<=0?flapUp:flapDown, (int)x, (int)(y+(velY+interpolation)),null);
         g.setColor(Color.WHITE);
-        g.setFont(gameFont);
-        g.drawString(score.toString(), World.WIDTH/2-gameFont.getSize()/2, 50);
+        g.setFont(scoreFont);
+        g.drawString(score.toString(), World.WIDTH/2-scoreFont.getSize()/2, 50);
+        g.setFont(highScoreFont);
+        g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
+        g.drawString("Highscore: " + sc.score, 20,World.HEIGHT-60 );
     }
     
         
