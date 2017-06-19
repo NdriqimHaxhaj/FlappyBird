@@ -8,6 +8,7 @@ package flappybird;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -25,12 +26,15 @@ public class Bird implements Updatable,Renderable{
     private Pipes pipes;
     private int scoredPipe=0;
     
-    private int score=0;
+    private Integer score=0;
     
-    private Font gameFont = new Font("Arial", Font.BOLD,30);
+    private Font gameFont = new Font("Minecrafter", Font.TRUETYPE_FONT, 50);
     
     private BufferedImage flapUp;
     private BufferedImage flapDown;
+    
+    Score sc = new Score();
+    
     
     public Bird(Pipes pipes){
         resetBird();
@@ -77,6 +81,12 @@ public class Bird implements Updatable,Renderable{
         if((x>=pipeX && x<=pipeX + pipes.getPipeWidth() &&
                 (y<=pipeY || y >= pipeY+pipes.getVerticalPipeSpace())) ||
                 y>=World.HEIGHT){
+            // Stop game, ask to play again
+            System.out.println(score);
+            if(sc.score<score){
+                sc.writeScore(score);
+            }
+            System.out.println(sc.score);
             pipes.resetPipes();
             resetBird();
             score=0;
@@ -90,11 +100,13 @@ public class Bird implements Updatable,Renderable{
 
     @Override
     public void render(Graphics2D g, float interpolation) {
-    g.setColor(Color.BLUE);
-    
-    g.drawImage(velY<=0?flapUp:flapDown, (int)x, (int)(y+(velY+interpolation)),null);
-    g.setFont(gameFont);
-    g.drawString("Score: "+score, 20, 50);
+        g.setRenderingHint(
+            RenderingHints.KEY_TEXT_ANTIALIASING,
+            RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        g.drawImage(velY<=0?flapUp:flapDown, (int)x, (int)(y+(velY+interpolation)),null);
+        g.setColor(Color.WHITE);
+        g.setFont(gameFont);
+        g.drawString(score.toString(), World.WIDTH/2-gameFont.getSize()/2, 50);
     }
     
         

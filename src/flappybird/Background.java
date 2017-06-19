@@ -15,15 +15,11 @@ import java.io.IOException;
  */
 public class Background implements Updatable,Renderable {
 
-    private BufferedImage Hard;
-    private BufferedImage Medium;
-    private BufferedImage Easy;
+    private BufferedImage City;
 
     public Background() {
         try {
-              this.Hard = Sprite.getSprite("../images/adv.jpg");
-//            this.Medium = Sprite.getSprite("../images/med.jpg");
-//            this.Easy = Sprite.getSprite("../images/eas.jpg");
+            this.City = Sprite.getSprite("../images/city.jpg");
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
             System.exit(1);
@@ -37,7 +33,7 @@ public class Background implements Updatable,Renderable {
 
     @Override
     public void render(Graphics2D g, float interpolation) {
-       g.drawImage(Hard, null, 0, 0);
+       g.drawImage(City, null, 0, 0);
     }
     
 }

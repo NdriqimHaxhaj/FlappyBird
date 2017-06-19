@@ -1,7 +1,6 @@
 package flappybird;
 
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
@@ -37,6 +36,7 @@ public class World {
     public void start() {
         Dimension worldSize = new Dimension(World.WIDTH, World.HEIGHT);
         JFrame gameWindow = new JFrame(gameTitle);
+        gameWindow.setUndecorated(false); //remove Window Style
         gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         gameWindow.setSize(worldSize);
         gameWindow.setResizable(false);
@@ -58,7 +58,6 @@ public class World {
         int loops;
         float interpolation;
         
-        long timeAtLastFPSCheck = 0;
         int frames=0;
         
         boolean flying = true;
@@ -82,15 +81,7 @@ public class World {
                             /(float) TIME_PER_FRAME ;
            render(interpolation);
            
-           
-           //FPS Check
-//           if (System.currentTimeMillis() - timeAtLastFPSCheck >= 1000){
-//               System.out.println("FPS: "+frames);
-//               gameWindow.setTitle(gameTitle + " - FPS: "+frames);
-//               frames=0;
-//               timeAtLastFPSCheck=System.currentTimeMillis();
-//           }
-           
+         
         }
     } // end of start() method
 

@@ -5,26 +5,31 @@
  */
 package flappybird;
 
+import java.io.IOException;
+
 /**
  *
  * @author Ndriqim Haxhaj
  */
 public class Main {
-    public static void main (String[] args){
-        World w = new World();
+    public static void main (String[] args) {
+        World world = new World();
+        
         //initialise game objects
-        Pipes p = new Pipes();
-        Bird b = new Bird(p);
+        Pipes pipes = new Pipes();
+        Bird bird = new Bird(pipes);
         Background bg = new Background();
+        
         // add updatables and renderables
-        w.addUpdatable(bg);
-        w.addRenderable(bg);
-        w.addRenderable(p);
-        w.addUpdatable(p);
-        w.addUpdatable(b);
-        w.addRenderable(b);
-      
-        // start!
-        w.start();
+        world.addUpdatable(bg);
+        world.addRenderable(bg);
+        world.addRenderable(pipes);
+        world.addUpdatable(pipes);
+        world.addUpdatable(bird);
+        world.addRenderable(bird);
+        
+       
+        // start game!
+        world.start();
     }
 }

@@ -5,13 +5,10 @@
  */
 package flappybird;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -38,16 +35,16 @@ public class Pipes implements Updatable, Renderable {
 
     public Pipes() {
         try { 
-            this.pipeDown = Sprite.getSprite("../images/pinkDownPipe.png");
-            this.pipeUp1 = Sprite.getSprite("../images/pinkUpPipe1.png");
-            this.pipeUp2 = Sprite.getSprite("../images/pinkUpPipe2.png");
-            this.pipeUp3 = Sprite.getSprite("../images/pinkUpPipe3.png");
-            this.pipeUp4 = Sprite.getSprite("../images/pinkUpPipe4.png");
-            this.pipeUp5 = Sprite.getSprite("../images/pinkUpPipe5.png");
-            this.pipeUp6 = Sprite.getSprite("../images/pinkUpPipe6.png");
-            this.pipeUp7 = Sprite.getSprite("../images/pinkUpPipe7.png");
-            this.pipeUp8 = Sprite.getSprite("../images/pinkUpPipe8.png");
-            this.pipeUp9 = Sprite.getSprite("../images/pinkUpPipe9.png");
+            this.pipeDown = Sprite.getSprite("../images/DownPipe.png");
+            this.pipeUp1 = Sprite.getSprite("../images/UpPipe1.png");
+            this.pipeUp2 = Sprite.getSprite("../images/UpPipe2.png");
+            this.pipeUp3 = Sprite.getSprite("../images/UpPipe3.png");
+            this.pipeUp4 = Sprite.getSprite("../images/UpPipe4.png");
+            this.pipeUp5 = Sprite.getSprite("../images/UpPipe5.png");
+            this.pipeUp6 = Sprite.getSprite("../images/UpPipe6.png");
+            this.pipeUp7 = Sprite.getSprite("../images/UpPipe7.png");
+            this.pipeUp8 = Sprite.getSprite("../images/UpPipe8.png");
+            this.pipeUp9 = Sprite.getSprite("../images/UpPipe9.png");
         } catch (IOException ex) {
            System.err.println(ex.getMessage());
            System.exit(1);
@@ -156,7 +153,6 @@ public class Pipes implements Updatable, Renderable {
     
     @Override
     public void render(Graphics2D g, float interpolation) {
-//        g.setColor(Color.red);
         
         //Pipe 1
         g.drawImage(checkY(y1),(int)(x1+(velX*interpolation)), 0, pipeWidth,(int)y1,null );
