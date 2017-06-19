@@ -58,17 +58,14 @@ public class World {
         int loops;
         float interpolation;
         
-        int frames=0;
-        
         boolean flying = true;
         while (flying) {
            //Updating
            loops=0; // Counts the amount of time that we are going to update 
-                    // We are not going to render more than MAX_FRAME_SKIPS
            
+                    // We are not going to render more than MAX_FRAME_SKIPS
            while(System.currentTimeMillis()>nextFrame && loops < MAX_FRAME_SKIPS)   {
                update();
-               frames++; // Times we are going to update per second
                
                nextFrame+=TIME_PER_FRAME;
                loops++;

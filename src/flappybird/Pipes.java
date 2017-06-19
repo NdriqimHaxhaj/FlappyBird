@@ -56,7 +56,7 @@ public class Pipes implements Updatable, Renderable {
     public void resetPipes() {
         nearestPipe = 0;
 
-        x1 = World.WIDTH * 2;
+        x1 = (int)(World.WIDTH * 1.2);
         x2 = x1 + pipeWidth + spaceBetween;
         x3 = x2 + pipeWidth + spaceBetween;
 
@@ -155,7 +155,7 @@ public class Pipes implements Updatable, Renderable {
     public void render(Graphics2D g, float interpolation) {
         
         //Pipe 1
-        g.drawImage(checkY(y1),(int)(x1+(velX*interpolation)), 0, pipeWidth,(int)y1,null );
+        g.drawImage(checkY(y1),(int)(x1+(velX*interpolation)), 0, pipeWidth,(int)y1, null );
         g.drawImage(pipeDown, (int)(x1+(velX*interpolation)), (int) (y1+spaceVertical),pipeWidth,pipeDown.getHeight(),null);
 
         // Pipe 2

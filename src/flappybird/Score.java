@@ -11,8 +11,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -57,7 +55,6 @@ public class Score {
          try {
             str = bufReader.readLine();
             bufReader.close();
-            System.out.println(str);
         } catch (IOException ex) {
              System.out.println("Couldn't read from file");
              System.exit(1);

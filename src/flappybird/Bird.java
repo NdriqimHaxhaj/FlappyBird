@@ -86,12 +86,18 @@ public class Bird implements Updatable,Renderable{
                 (y<=pipeY || y >= pipeY+pipes.getVerticalPipeSpace())) ||
                 y>=World.HEIGHT){
             // Stop game, ask to play again
-            System.out.println(score);
+            System.out.println("Current score: "+score);
             if(sc.score<score){
+                
                 sc.writeScore(score);
                 highScore=sc.score;
             }
-            System.out.println(sc.score);
+//            try {
+//                Thread.sleep(100000);
+//            } catch (InterruptedException ex) {
+//                System.out.println("Thread.sleep error");
+//            }
+            System.out.println("High score: "+sc.score);
             pipes.resetPipes();
             resetBird();
             score=0;
@@ -113,7 +119,7 @@ public class Bird implements Updatable,Renderable{
         g.setFont(scoreFont);
         g.drawString(score.toString(), World.WIDTH/2-scoreFont.getSize()/2, 50);
         g.setFont(highScoreFont);
-        g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.4f));
+        g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
         g.drawString("Highscore: " + sc.score, 20,World.HEIGHT-60 );
     }
     
